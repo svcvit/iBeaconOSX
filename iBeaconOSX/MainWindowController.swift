@@ -41,8 +41,8 @@ class MainWindowController: NSWindowController, CBPeripheralManagerDelegate {
         } else {
             let proximityUUID = NSUUID(UUIDString: uuidTextField!.stringValue)
             let beaconRegion = BeaconRegion(uuid: proximityUUID!, major: UInt16(majorTextField!.intValue), minor: UInt16(minorTextField!.intValue))
-            var advertismentDictionary = beaconRegion.peripheralDataWithMeasuredPower(Int8(self.powerTextField!.intValue))
-            btManager.startAdvertising(advertismentDictionary)
+            let advertismentDictionary = beaconRegion.peripheralDataWithMeasuredPower(Int8(self.powerTextField!.intValue))
+            btManager.startAdvertising(advertismentDictionary as? [String : AnyObject])
             triggerButton?.title = "Turn iBeacon Off"
             uuidTextField?.enabled = false
             minorTextField?.enabled = false
@@ -54,7 +54,7 @@ class MainWindowController: NSWindowController, CBPeripheralManagerDelegate {
 
     //MARK: CBPeripheralManagerDelegate methods
 
-    func peripheralManagerDidUpdateState(peripheral: CBPeripheralManager!) {
+    func peripheralManagerDidUpdateState(peripheral: CBPeripheralManager) {
         switch (peripheral.state) {
         case .Unknown:
             btInfoLabel?.stringValue = "State Unknown"

@@ -15,13 +15,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return windowController
     }()
 
-    func applicationDidFinishLaunching(aNotification: NSNotification?) {
+    func applicationDidFinishLaunching(aNotification: NSNotification) {
         // Insert code here to initialize your application
         mainWindowController.showWindow(nil)
         mainWindowController.window?.makeKeyAndOrderFront(nil);
     }
 
-    func applicationWillTerminate(aNotification: NSNotification?) {
+    func applicationWillTerminate(aNotification: NSNotification) {
         // Insert code here to tear down your application
     }
 
